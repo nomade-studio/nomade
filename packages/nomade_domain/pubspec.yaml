@@ -1,0 +1,16 @@
+name: nomade_domain
+description: Domain models and entities for Nomade
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  json_annotation: ^4.8.1
+  equatable: ^2.0.5
+
+dev_dependencies:
+  test: ^1.24.0
+  json_serializable: ^6.7.1
+  build_runner: ^2.4.0

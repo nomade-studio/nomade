@@ -1,0 +1,40 @@
+name: nomade_app
+description: Nomade - A fully local, privacy-first AI assistant
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Local packages
+  nomade_ui:
+    path: ../../packages/nomade_ui
+  nomade_domain:
+    path: ../../packages/nomade_domain
+  nomade_protocol:
+    path: ../../packages/nomade_protocol
+  
+  # State management
+  flutter_riverpod: ^2.4.0
+  
+  # FFI bridge to Rust
+  # flutter_rust_bridge: ^2.0.0  # Uncomment after bridge setup
+  ffi: ^2.1.0
+  
+  # UI
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  
+  # Enable desktop support
+  generate: true
