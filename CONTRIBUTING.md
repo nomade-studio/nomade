@@ -73,9 +73,10 @@ cargo test
 ### 5. Submit a Pull Request
 
 - Push your changes to your fork
-- Create a pull request against the `main` branch
+- Create a pull request against the `develop` branch (default branch)
 - Provide a clear description of your changes
 - Reference any related issues
+- The `production` branch is reserved for releases and is admin-only
 
 ## Code Style Guidelines
 
