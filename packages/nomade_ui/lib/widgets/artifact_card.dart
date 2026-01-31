@@ -50,7 +50,10 @@ class ArtifactCard extends StatelessWidget {
   String _getTitle() {
     switch (artifact.type) {
       case ArtifactType.text:
-        return artifact.content?.substring(0, 50) ?? 'Text content';
+        final content = artifact.content;
+        if (content == null) return 'Text content';
+        final maxLength = content.length < 50 ? content.length : 50;
+        return content.substring(0, maxLength);
       case ArtifactType.file:
         return artifact.metadata['filename'] as String? ?? 'File';
       case ArtifactType.image:

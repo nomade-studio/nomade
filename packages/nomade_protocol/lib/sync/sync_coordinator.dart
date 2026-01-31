@@ -37,7 +37,9 @@ class SyncCoordinator {
   /// Sync an artifact to other devices
   Future<void> syncArtifact(Artifact artifact) async {
     if (_status.state != SyncState.connected) {
-      throw StateError('Cannot sync artifact while not connected');
+      throw StateError(
+        'Cannot sync artifact: not connected (current state: ${_status.state})',
+      );
     }
     // TODO: Implement artifact sync via Rust core
   }
