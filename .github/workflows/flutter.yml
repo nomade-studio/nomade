@@ -2,13 +2,13 @@ name: Flutter CI
 
 on:
   push:
-    branches: [main, develop]
+    branches: [production, develop]
     paths:
       - "apps/**"
       - "packages/**"
       - ".github/workflows/flutter.yml"
   pull_request:
-    branches: [main, develop]
+    branches: [production, develop]
     paths:
       - "apps/**"
       - "packages/**"
@@ -19,7 +19,7 @@ jobs:
     name: Analyze
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -50,7 +50,7 @@ jobs:
     name: Format
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -66,7 +66,7 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -117,7 +117,7 @@ jobs:
             build_cmd: "windows"
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2

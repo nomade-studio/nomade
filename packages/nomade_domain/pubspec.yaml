@@ -15,4 +15,4 @@ dev_dependencies:
   test: ^1.24.9
   json_serializable: ^6.7.1
   build_runner: ^2.4.7
-  lints: ^5.0.0
+  lints: ^6.1.0
