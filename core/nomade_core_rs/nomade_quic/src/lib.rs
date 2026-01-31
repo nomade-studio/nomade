@@ -14,7 +14,7 @@ impl QuicServer {
     pub fn new(addr: SocketAddr) -> Self {
         Self { addr }
     }
-    
+
     /// Start listening (skeleton implementation)
     pub async fn listen(&self) -> anyhow::Result<()> {
         tracing::info!("QUIC server listening on {}", self.addr);
@@ -33,7 +33,7 @@ impl QuicClient {
     pub fn new(server_addr: SocketAddr) -> Self {
         Self { server_addr }
     }
-    
+
     /// Connect to server (skeleton implementation)
     pub async fn connect(&self) -> anyhow::Result<()> {
         tracing::info!("QUIC client connecting to {}", self.server_addr);
@@ -45,7 +45,7 @@ impl QuicClient {
 #[cfg(test)]
 mod tests {
     use super::*;
-    
+
     #[test]
     fn test_quic_server_creation() {
         let addr: SocketAddr = "127.0.0.1:8765".parse().unwrap();
@@ -53,4 +53,3 @@ mod tests {
         assert_eq!(server.addr, addr);
     }
 }
-

@@ -28,12 +28,12 @@ impl EventStream {
         let (tx, _) = broadcast::channel(100);
         Self { tx }
     }
-    
+
     /// Publish an event
     pub fn publish(&self, event: Event) {
         let _ = self.tx.send(event); // Ignore if no subscribers
     }
-    
+
     /// Subscribe to events
     pub fn subscribe(&self) -> broadcast::Receiver<Event> {
         self.tx.subscribe()
@@ -49,16 +49,16 @@ impl Default for EventStream {
 #[cfg(test)]
 mod tests {
     use super::*;
-    
+
     #[tokio::test]
     async fn test_event_stream() {
         let stream = EventStream::new();
         let mut rx = stream.subscribe();
-        
+
         stream.publish(Event::ArtifactCreated {
             id: "test-123".into(),
         });
-        
+
         let event = rx.recv().await.unwrap();
         match event {
             Event::ArtifactCreated { id } => assert_eq!(id, "test-123"),
@@ -66,4 +66,3 @@ mod tests {
         }
     }
 }
-

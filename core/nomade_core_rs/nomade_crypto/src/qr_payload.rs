@@ -1,10 +1,8 @@
 //! QR code payload encoding/decoding for device pairing
 
-use ed25519_dalek::Signature;
 use serde::{Deserialize, Serialize};
 
 use crate::{DeviceId, Result};
-
 
 /// Pairing offer for QR code
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -29,7 +27,7 @@ impl PairingOffer {
     ) -> Self {
         let nonce = generate_nonce();
         let timestamp = current_timestamp();
-        
+
         Self {
             version: 1,
             device_id,
@@ -41,7 +39,7 @@ impl PairingOffer {
             signature: vec![], // Will be signed separately
         }
     }
-    
+
     /// Get signing payload
     pub fn signing_payload(&self) -> Vec<u8> {
         let mut payload = Vec::new();
@@ -72,7 +70,7 @@ pub fn decode_pairing_offer(url: &str) -> Result<PairingOffer> {
     let data = url
         .strip_prefix("nomade://pair?v=1&d=")
         .ok_or_else(|| crate::CryptoError::EncryptionFailed("Invalid URL format".into()))?;
-    
+
     let compressed = base64_decode(data)?;
     let json = decompress_data(&compressed)?;
     let offer = serde_json::from_slice(&json)?;
@@ -108,12 +106,12 @@ fn decompress_data(data: &[u8]) -> Result<Vec<u8>> {
 }
 
 fn base64_encode(data: &[u8]) -> String {
-    use base64::{Engine as _, engine::general_purpose};
+    use base64::{engine::general_purpose, Engine as _};
     general_purpose::URL_SAFE_NO_PAD.encode(data)
 }
 
 fn base64_decode(data: &str) -> Result<Vec<u8>> {
-    use base64::{Engine as _, engine::general_purpose};
+    use base64::{engine::general_purpose, Engine as _};
     general_purpose::URL_SAFE_NO_PAD
         .decode(data)
         .map_err(|e| crate::CryptoError::EncryptionFailed(e.to_string()))
@@ -122,7 +120,7 @@ fn base64_decode(data: &str) -> Result<Vec<u8>> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    
+
     #[test]
     fn test_encode_decode_pairing_offer() {
         let offer = PairingOffer::new(
@@ -131,10 +129,10 @@ mod tests {
             vec![1, 2, 3, 4],
             vec!["192.168.1.100:8765".into()],
         );
-        
+
         let encoded = encode_pairing_offer(&offer).unwrap();
         assert!(encoded.starts_with("nomade://pair?v=1&d="));
-        
+
         let decoded = decode_pairing_offer(&encoded).unwrap();
         assert_eq!(decoded.device_name, "Test Device");
         assert_eq!(decoded.endpoints, vec!["192.168.1.100:8765"]);

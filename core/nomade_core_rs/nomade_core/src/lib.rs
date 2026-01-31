@@ -3,9 +3,9 @@
 //! Main library integrating all components
 
 pub use nomade_crypto;
+pub use nomade_events;
 pub use nomade_quic;
 pub use nomade_storage;
-pub use nomade_events;
 
 /// Initialize Nomade core with logging
 pub fn init() {
@@ -16,10 +16,9 @@ pub fn init() {
 #[cfg(test)]
 mod tests {
     use super::*;
-    
+
     #[test]
     fn test_init() {
         init();
     }
 }
-

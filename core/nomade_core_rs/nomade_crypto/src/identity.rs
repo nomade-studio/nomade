@@ -1,6 +1,6 @@
 //! Device identity management
 
-use ed25519_dalek::{SigningKey, VerifyingKey, Signature, Signer, Verifier};
+use ed25519_dalek::{Signature, Signer, SigningKey, Verifier, VerifyingKey};
 use rand::rngs::OsRng;
 use serde::{Deserialize, Serialize};
 
@@ -37,36 +37,40 @@ impl DeviceKeypair {
     pub fn new(signing_key: SigningKey) -> Self {
         let verifying_key = signing_key.verifying_key();
         let device_id = DeviceId::from_public_key(&verifying_key);
-        Self { signing_key, verifying_key, device_id }
+        Self {
+            signing_key,
+            verifying_key,
+            device_id,
+        }
     }
-    
+
     /// Get device ID
     pub fn device_id(&self) -> &DeviceId {
         &self.device_id
     }
-    
+
     /// Get verifying key (public key)
     pub fn verifying_key(&self) -> &VerifyingKey {
         &self.verifying_key
     }
-    
+
     /// Sign message
     pub fn sign(&self, message: &[u8]) -> Signature {
         self.signing_key.sign(message)
     }
-    
+
     /// Verify signature
     pub fn verify(&self, message: &[u8], signature: &Signature) -> Result<()> {
         self.verifying_key
             .verify(message, signature)
             .map_err(|_| CryptoError::InvalidSignature)
     }
-    
+
     /// Serialize public key to bytes
     pub fn public_key_bytes(&self) -> Vec<u8> {
         self.verifying_key.as_bytes().to_vec()
     }
-    
+
     /// Serialize secret key to bytes (use carefully!)
     pub fn secret_key_bytes(&self) -> Vec<u8> {
         self.signing_key.to_bytes().to_vec()
@@ -86,21 +90,21 @@ pub fn generate_keypair() -> DeviceKeypair {
 #[cfg(test)]
 mod tests {
     use super::*;
-    
+
     #[test]
     fn test_generate_keypair() {
         let keypair = generate_keypair();
         assert!(keypair.device_id().0.starts_with("blake3-"));
     }
-    
+
     #[test]
     fn test_sign_and_verify() {
         let keypair = generate_keypair();
         let message = b"Hello, Nomade!";
-        
+
         let signature = keypair.sign(message);
         assert!(keypair.verify(message, &signature).is_ok());
-        
+
         let wrong_message = b"Wrong message";
         assert!(keypair.verify(wrong_message, &signature).is_err());
     }

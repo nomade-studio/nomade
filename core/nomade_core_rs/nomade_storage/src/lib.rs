@@ -3,7 +3,6 @@
 //! Provides artifact store interface
 
 use serde::{Deserialize, Serialize};
-use std::path::PathBuf;
 
 /// Artifact metadata
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -19,13 +18,13 @@ pub struct Artifact {
 pub trait ArtifactStore: Send + Sync {
     /// Store an artifact
     fn store(&self, artifact: &Artifact) -> anyhow::Result<()>;
-    
+
     /// Retrieve an artifact
     fn get(&self, id: &str) -> anyhow::Result<Option<Artifact>>;
-    
+
     /// List all artifacts
     fn list(&self) -> anyhow::Result<Vec<Artifact>>;
-    
+
     /// Delete an artifact
     fn delete(&self, id: &str) -> anyhow::Result<()>;
 }
@@ -55,17 +54,17 @@ impl ArtifactStore for InMemoryStore {
         artifacts.insert(artifact.id.clone(), artifact.clone());
         Ok(())
     }
-    
+
     fn get(&self, id: &str) -> anyhow::Result<Option<Artifact>> {
         let artifacts = self.artifacts.lock().unwrap();
         Ok(artifacts.get(id).cloned())
     }
-    
+
     fn list(&self) -> anyhow::Result<Vec<Artifact>> {
         let artifacts = self.artifacts.lock().unwrap();
         Ok(artifacts.values().cloned().collect())
     }
-    
+
     fn delete(&self, id: &str) -> anyhow::Result<()> {
         let mut artifacts = self.artifacts.lock().unwrap();
         artifacts.remove(id);
@@ -76,11 +75,11 @@ impl ArtifactStore for InMemoryStore {
 #[cfg(test)]
 mod tests {
     use super::*;
-    
+
     #[test]
     fn test_in_memory_store() {
         let store = InMemoryStore::new();
-        
+
         let artifact = Artifact {
             id: "test-123".into(),
             title: "Test".into(),
@@ -88,13 +87,12 @@ mod tests {
             modified_at: 0,
             content_hash: "hash".into(),
         };
-        
+
         store.store(&artifact).unwrap();
         let retrieved = store.get("test-123").unwrap().unwrap();
         assert_eq!(retrieved.title, "Test");
-        
+
         store.delete("test-123").unwrap();
         assert!(store.get("test-123").unwrap().is_none());
     }
 }
-
