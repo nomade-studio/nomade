@@ -79,5 +79,6 @@ class Artifact extends Equatable {
   }
 
   @override
-  List<Object?> get props => [id, type, deviceId, timestamp, metadata, content, filePath];
+  List<Object?> get props =>
+      [id, type, deviceId, timestamp, metadata, content, filePath];
 }

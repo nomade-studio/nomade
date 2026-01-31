@@ -6,6 +6,9 @@ authors.workspace = true
 license.workspace = true
 repository.workspace = true
 
+[lib]
+crate-type = ["cdylib", "staticlib"]
+
 [dependencies]
 # Internal crates
 nomade_crypto = { path = "../nomade_crypto" }
@@ -30,4 +33,7 @@ tracing-subscriber.workspace = true
 
 # Other
 bytes.workspace = true
+
+# Flutter Rust Bridge
+flutter_rust_bridge = "=2.11.1"
 

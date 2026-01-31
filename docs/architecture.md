@@ -26,7 +26,7 @@ Nomade is a privacy-first, local-first AI assistant designed for cross-platform 
 │         │                 │                │       │
 │         └─────────────────┴────────────────┘       │
 │                           │                         │
-│                    Flutter Rust Bridge              │
+│             Nomade Native (Bridge)                  │
 │                           │                         │
 └───────────────────────────┼─────────────────────────┘
                             │
@@ -67,6 +67,12 @@ Nomade is a privacy-first, local-first AI assistant designed for cross-platform 
 - Device discovery
 - Connection management
 - Conflict resolution strategy
+
+**packages/nomade_native/**
+- Bridge package (Dart FFI)
+- Links `nomade_core` via static/dynamic linking
+- Contains generated bridge code (from `flutter_rust_bridge`)
+
 
 #### Rust Core Library
 

@@ -79,5 +79,6 @@ class Device extends Equatable {
   }
 
   @override
-  List<Object?> get props => [id, name, type, platform, lastSeen, isOnline, ipAddress];
+  List<Object?> get props =>
+      [id, name, type, platform, lastSeen, isOnline, ipAddress];
 }

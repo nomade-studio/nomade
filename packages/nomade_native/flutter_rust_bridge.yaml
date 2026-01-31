@@ -1,0 +1,4 @@
+rust_input: crate::api
+rust_root: /Users/surmesure/Documents/Extra/Code/nomade/core/nomade_core_rs/nomade_core
+dart_output: lib/src/rust
+rust_output: /Users/surmesure/Documents/Extra/Code/nomade/core/nomade_core_rs/nomade_core/src/frb_generated.rs

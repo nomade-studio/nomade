@@ -7,6 +7,12 @@ pub use nomade_events;
 pub use nomade_quic;
 pub use nomade_storage;
 
+pub mod api;
+pub mod device;
+pub mod protocol;
+
+mod frb_generated;
+
 /// Initialize Nomade core with logging
 pub fn init() {
     tracing_subscriber::fmt::init();
