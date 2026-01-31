@@ -59,7 +59,7 @@ check-rust:
 check-flutter:
 	@echo "Checking Flutter..."
 	@echo "Formatting..."
-	dart format --set-exit-if-changed .
+	dart format --set-exit-if-changed $(APP_DIR) $(PACKAGES_DIR)
 	@echo "Analyzing..."
 	cd $(APP_DIR) && flutter analyze
 	cd $(PACKAGES_DIR)/nomade_domain && flutter analyze
@@ -75,4 +75,4 @@ check-flutter:
 format:
 	@echo "Formatting Code..."
 	cd core/nomade_core_rs && cargo fmt --all
-	dart format .
+	dart format $(APP_DIR) $(PACKAGES_DIR)
