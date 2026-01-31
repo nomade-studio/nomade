@@ -2,12 +2,12 @@ name: Rust CI
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ production, develop ]
     paths:
       - 'core/nomade_core_rs/**'
       - '.github/workflows/rust.yml'
   pull_request:
-    branches: [ main, develop ]
+    branches: [ production, develop ]
     paths:
       - 'core/nomade_core_rs/**'
       - '.github/workflows/rust.yml'
