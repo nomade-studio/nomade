@@ -6,7 +6,7 @@ Nomade is currently in early development. Security updates will be applied to th
 
 | Version | Supported          |
 | ------- | ------------------ |
-| main    | :white_check_mark: |
+| production | :white_check_mark: |
 
 ## Security Design Principles
 
