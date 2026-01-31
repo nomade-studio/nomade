@@ -22,6 +22,7 @@ nomade/
 │   └── nomade_app/          # Flutter application shell
 ├── packages/
 │   ├── nomade_domain/       # Domain models and business logic
+│   ├── nomade_native/       # Native bridge (FFI) to Rust core
 │   ├── nomade_protocol/     # Protocol definitions and sync logic
 │   └── nomade_ui/           # Reusable UI components
 ├── core/
@@ -39,68 +40,62 @@ git clone https://github.com/YOUR_USERNAME/nomade.git
 cd nomade
 ```
 
-### 2. Create a Branch
+### 2. Setup (Important)
+
+We use **Lefthook** for git hooks and a **Makefile** for common tasks.
 
 ```bash
-git checkout -b feature/your-feature-name
+# 1. Install dependencies
+make deps
+
+# 2. Install Lefthook (if not already installed)
+brew install lefthook
+
+# 3. Enable Git Hooks (REQUIRED)
+lefthook install
 ```
 
-### 3. Make Changes
+### 3. Create a Branch
 
-- Write clear, concise commit messages
-- Follow existing code style and conventions
-- Add tests for new functionality
-- Update documentation as needed
+**Strict Branch Naming**: `type/description`
+*   Allowed types: `feat`, `bug`, `fix`, `refactor`, `docs`, `style`, `test`, `chore`, `ci`
+*   Example: `feat/login-screen`, `bug/crash-fix`
 
-### 4. Run Tests and Linting
-
-**Flutter/Dart:**
 ```bash
-cd apps/nomade_app
-flutter test
-dart format --set-exit-if-changed .
-dart analyze
+git checkout -b feat/your-feature-name
 ```
 
-**Rust:**
+### 4. Make Changes
+
+- **Conventional Commits**: Messages **MUST** follow the format `type(scope): subject`.
+    - Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`.
+    - Example: `feat(auth): add google login`
+- Run local checks frequently with `make check`.
+- Update documentation as needed.
+
+### 5. Run Verification
+
+We provide meaningful `make` targets to help you verify your code:
+
 ```bash
-cd core/nomade_core_rs
-cargo fmt -- --check
-cargo clippy -- -D warnings
-cargo test
-```
+# Run all checks (Format, Analyze, Test) for Rust & Flutter
+make check
 
-### 5. Submit a Pull Request
+# Run only Rust checks
+make check-rust
 
-- Push your changes to your fork
-- Create a pull request against the `develop` branch (default branch)
-- Provide a clear description of your changes
-- Reference any related issues
-- The `production` branch is reserved for releases and is admin-only
+# Run only Flutter checks
+make check-flutter
 
-## Code Style Guidelines
-
-### Dart/Flutter
-
-- Follow the [Dart style guide](https://dart.dev/guides/language/effective-dart/style)
-- Use `dart format` for consistent formatting
-- Prefer composition over inheritance
-- Write descriptive variable and function names
-
-### Rust
-
-- Follow the [Rust API guidelines](https://rust-lang.github.io/api-guidelines/)
-- Use `cargo fmt` for consistent formatting
-- Document public APIs with `///` doc comments
-- Write idiomatic Rust code
-- Prefer strong typing and explicit error handling
+# Auto-format code
+make format
+``` 
 
 ## Testing
 
-- Write unit tests for all new functionality
-- Ensure tests are deterministic and isolated
-- Test edge cases and error conditions
-- Maintain test coverage above 80%
+- Write unit tests for all new functionality.
+- Ensure `make check` passes before pushing.
+- Maintain test coverage above 80%.
 
 ## Documentation
 
