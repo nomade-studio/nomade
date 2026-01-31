@@ -1,0 +1,33 @@
+name: nomade_app
+description: Nomade - Cross-device clipboard and file sharing application
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Nomade packages
+  nomade_domain:
+    path: ../../packages/nomade_domain
+  nomade_protocol:
+    path: ../../packages/nomade_protocol
+  nomade_ui:
+    path: ../../packages/nomade_ui
+  
+  # Core dependencies
+  cupertino_icons: ^1.0.6
+  provider: ^6.1.1
+  path_provider: ^2.1.1
+  shared_preferences: ^2.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true

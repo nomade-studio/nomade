@@ -1,0 +1,15 @@
+name: nomade_protocol
+description: Synchronization protocol coordination for Nomade
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  meta: ^1.11.0
+  nomade_domain:
+    path: ../nomade_domain
+
+dev_dependencies:
+  test: ^1.24.9
