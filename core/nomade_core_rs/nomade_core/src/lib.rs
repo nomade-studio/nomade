@@ -13,13 +13,13 @@
 //! This library exposes an FFI interface for Flutter via flutter_rust_bridge.
 //! See the `bridge` module for FFI exports.
 
-pub mod identity;
-pub mod pairing;
-pub mod networking;
 pub mod artifacts;
-pub mod sync;
-pub mod crypto;
 pub mod bridge;
+pub mod crypto;
+pub mod identity;
+pub mod networking;
+pub mod pairing;
+pub mod sync;
 
 pub mod error;
 pub use error::{Error, Result};

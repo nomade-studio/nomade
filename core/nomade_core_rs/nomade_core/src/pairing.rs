@@ -68,7 +68,8 @@ impl PairingPayload {
 
         let encoded = &uri[14..]; // Skip "nomade://pair/"
         use base64::Engine;
-        let json = base64::engine::general_purpose::STANDARD.decode(encoded)
+        let json = base64::engine::general_purpose::STANDARD
+            .decode(encoded)
             .map_err(|e| Error::InvalidData(format!("Invalid base64: {}", e)))?;
 
         let json_str = String::from_utf8(json)

@@ -2,7 +2,7 @@
 //!
 //! Handles device identity, key generation, and key storage.
 
-use ed25519_dalek::{Signer, SigningKey, Signature, Verifier, VerifyingKey};
+use ed25519_dalek::{Signature, Signer, SigningKey, Verifier, VerifyingKey};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
@@ -47,15 +47,19 @@ impl Identity {
     /// Verify a signature against this identity's public key
     pub fn verify(&self, data: &[u8], signature: &[u8]) -> Result<bool> {
         // Convert public key bytes to VerifyingKey
-        let verifying_key_bytes: [u8; 32] = self.public_key.as_slice().try_into()
+        let verifying_key_bytes: [u8; 32] = self
+            .public_key
+            .as_slice()
+            .try_into()
             .map_err(|_| Error::Crypto("Public key must be 32 bytes".to_string()))?;
         let verifying_key = VerifyingKey::from_bytes(&verifying_key_bytes)
             .map_err(|e| Error::Crypto(format!("Invalid public key: {}", e)))?;
 
         // Convert signature slice to array
-        let signature_bytes: [u8; 64] = signature.try_into()
+        let signature_bytes: [u8; 64] = signature
+            .try_into()
             .map_err(|_| Error::Crypto("Signature must be 64 bytes".to_string()))?;
-        
+
         let signature = Signature::from_bytes(&signature_bytes);
 
         Ok(verifying_key.verify(data, &signature).is_ok())
