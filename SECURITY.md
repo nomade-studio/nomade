@@ -13,30 +13,19 @@ Nomade is currently in early development. Security updates will be applied to th
 Nomade is designed with security and privacy as core principles:
 
 ### 1. Local-First Architecture
-- No third-party relay servers by default
-- LAN-first communication with optional manual port-forwarding
-- Data stays on user devices unless explicitly synced
+- **No relay servers**: We do not operate any servers that relay or store user data.
+- **Direct P2P**: Sync happens directly between devices via QUIC.
+- **Offline by Default**: The app is fully functional without an internet connection.
 
-### 2. Encryption at Rest
-- Embeddings encrypted at rest by default
-- User controls encryption keys
-- Content-addressed storage with encrypted metadata
+### 2. Encryption at Rest & in Transit
+- **Zero-Knowledge**: Keys are generated on-device and never leave your control.
+- **Authenticated Encryption**: All sync traffic is secured via TLS 1.3 (QUIC) with mutual authentication (mTLS).
+- **At Rest**: Sensitive artifacts (embeddings, vectors) are encrypted on disk using robust primitives (ChaCha20-Poly1305).
 
-### 3. Minimal Sync Policy (v1)
-- Plaintext metadata synced (controlled by user)
-- Embeddings encrypted at rest
-- No blobs/chunk text synced by default
-- User has granular control over what syncs
-
-### 4. Secure Communication
-- QUIC protocol for sync with TLS 1.3
-- Identity keys for device authentication
-- QR code-based secure pairing
-
-### 5. Privacy-Preserving AI
-- Local AI processing where possible
-- No telemetry without explicit user consent
-- Deterministic RAG pipeline for reproducibility
+### 3. Strict Sync Control
+- **User Agency**: Nothing leaves the device unless explicitly configured.
+- **Granular Scope**: You choose which artifacts or folders to sync.
+- **Verifiable**: Open source means you can audit the network stack yourself.
 
 ## Reporting a Vulnerability
 

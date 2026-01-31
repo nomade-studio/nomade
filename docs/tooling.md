@@ -245,6 +245,7 @@ nomade/
 │   └── nomade_app/             # Flutter app
 ├── packages/
 │   ├── nomade_domain/          # Dart business logic
+│   ├── nomade_native/          # Dart FFI Bridge (no Rust source)
 │   ├── nomade_protocol/        # Dart sync protocol
 │   └── nomade_ui/              # Dart UI components
 ├── core/
@@ -261,20 +262,25 @@ nomade/
 
 ### Build System
 
-#### Rust Build
+#### Recommended Workflow (Makefile)
 
 ```bash
-# Build all Rust crates
-cd core/nomade_core_rs
-cargo build --release
+# Install dependencies
+make deps
 
-# Run tests
-cargo test --all
+# Generate Bridge Code (after editing Rust)
+make gen
 
-# Generate Flutter bindings
-flutter_rust_bridge_codegen \
-    --rust-input nomade_core/src/api.rs \
-    --dart-output ../../packages/nomade_domain/lib/ffi.dart
+# Run App (macOS)
+make run-macos
+```
+
+#### Manual Rust Build
+
+```bash
+# Build Rust core
+cd packages/nomade_native
+flutter_rust_bridge_codegen generate
 ```
 
 #### Flutter Build

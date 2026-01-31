@@ -70,7 +70,7 @@ class ArtifactCard extends StatelessWidget {
   String _formatTimestamp() {
     final now = DateTime.now();
     final diff = now.difference(artifact.timestamp);
-    
+
     if (diff.inMinutes < 1) {
       return 'Just now';
     } else if (diff.inHours < 1) {
