@@ -1,0 +1,45 @@
+# Flutter/Dart
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# iOS/Xcode
+ios/.generated/
+ios/Flutter/flutter_export_environment.sh
+ios/Pods/
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.pbxuser
+*.xcworkspace/xcuserdata/
+*.xcuserstate
+
+# Android
+android/.gradle/
+android/app/debug
+android/app/profile
+android/app/release
+android/local.properties
+*.jks
+
+# macOS
+macos/Flutter/ephemeral/
+macos/Pods/
+
+# Windows
+windows/flutter/ephemeral/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+
+# Generated files
+*.g.dart
+*.freezed.dart
+*.mocks.dart

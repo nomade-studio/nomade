@@ -1,0 +1,30 @@
+[package]
+name = "nomade_crypto"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+# Cryptography
+ed25519-dalek.workspace = true
+blake3.workspace = true
+aes-gcm.workspace = true
+hkdf.workspace = true
+sha2.workspace = true
+rand.workspace = true
+
+# Serialization
+serde.workspace = true
+serde_json.workspace = true
+
+# Error handling
+anyhow.workspace = true
+thiserror.workspace = true
+
+# Other
+bytes.workspace = true
+base64 = "0.22"
+
+

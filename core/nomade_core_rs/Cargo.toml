@@ -1,0 +1,49 @@
+[workspace]
+members = [
+    "nomade_core",
+    "nomade_quic",
+    "nomade_crypto",
+    "nomade_storage",
+    "nomade_events",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Rodrigue Ngalani Touko"]
+license = "MIT"
+repository = "https://github.com/nomade-studio/nomade"
+
+[workspace.dependencies]
+# Async runtime
+tokio = { version = "1.35", features = ["full"] }
+tokio-util = "0.7"
+
+# QUIC
+quinn = "0.11"
+rustls = "0.23"
+
+# Cryptography
+ed25519-dalek = "2.1"
+blake3 = "1.5"
+aes-gcm = "0.10"
+hkdf = "0.12"
+sha2 = "0.10"
+rand = "0.8"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+# Other
+bytes = "1.5"
+futures = "0.3"
