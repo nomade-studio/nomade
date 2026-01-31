@@ -1,17 +1,32 @@
 # Nomade
 
-**Full Local AI Assistant - Cross-platform Desktop and Mobile**
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-Nomade is a privacy-first, local-first AI assistant that runs on macOS, Windows, iOS, and Android. It provides intelligent document management, RAG (Retrieval-Augmented Generation) capabilities, and secure cross-device synchronization—all while keeping your data under your control.
+**A fully local, privacy-first AI assistant for desktop and mobile**
 
-## 🌟 Key Features
+Nomade is an open-source, cross-platform AI assistant that keeps your data under your control. With local-first architecture, end-to-end encryption, and peer-to-peer synchronization, Nomade ensures your conversations, documents, and AI-generated insights never leave your devices without your explicit consent.
 
-- **🔒 Privacy-First**: Local AI processing, no cloud dependencies, encrypted data at rest
-- **🌐 Cross-Platform**: Native apps for macOS, Windows, iOS, and Android
-- **🔄 Secure Sync**: QUIC-based peer-to-peer synchronization with optional LAN-first mode
-- **📚 Smart Documents**: Content-addressed storage with semantic embeddings
-- **🔐 End-to-End Security**: Device identity keys, QR code pairing, encrypted embeddings
-- **🎯 Deterministic RAG**: Reproducible AI pipeline for consistent results
+## ✨ Vision
+
+We believe AI assistants should be:
+
+- **Private**: Your data belongs to you, not in the cloud
+- **Powerful**: Full RAG capabilities with local vector search
+- **Secure Sync**: QUIC-based peer-to-peer synchronization all your devices with optional LAN-first mode
+- **Extensible**: Plugin architecture for custom workflows
+- **Cross-Platform**: Native apps for macOS, Windows, Linux, iOS, and Android
+- **Transparent**: Open source and auditable
+
+Nomade enables you to build a personal knowledge base, have intelligent conversations with your documents, and maintain context across devices—all while keeping your data local and secure.
+
+## 🔑 Key Features
+
+### Local-First Architecture
+- ✅ No third-party relay servers
+- ✅ All processing happens on your devices
+- ✅ LAN-first synchronization
+- ✅ (Optional) manual port-forwarding for remote access
 
 ## 🏗️ Architecture
 

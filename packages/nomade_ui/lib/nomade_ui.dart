@@ -1,5 +1,5 @@
 /// Nomade UI - Reusable widgets and components
-library nomade_ui;
+library;
 
 export 'widgets/artifact_card.dart';
 export 'widgets/device_list_tile.dart';

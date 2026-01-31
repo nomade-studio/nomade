@@ -1,5 +1,5 @@
 /// Nomade Domain Models and Business Logic
-library nomade_domain;
+library;
 
 export 'models/artifact.dart';
 export 'models/device.dart';

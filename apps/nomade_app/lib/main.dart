@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nomade_ui/nomade_ui.dart';
 
 void main() {
   runApp(const NomadeApp());
