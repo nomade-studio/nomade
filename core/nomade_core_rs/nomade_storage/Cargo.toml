@@ -1,0 +1,27 @@
+[package]
+name = "nomade_storage"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+# Internal
+nomade_crypto = { path = "../nomade_crypto" }
+
+# Storage
+sled = "0.34"
+
+# Serialization
+serde.workspace = true
+serde_json.workspace = true
+
+# Error handling
+anyhow.workspace = true
+thiserror.workspace = true
+
+# Other
+bytes.workspace = true
+blake3.workspace = true
+
