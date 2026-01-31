@@ -38,6 +38,7 @@ nomade/
 │   └── nomade_app/          # Flutter cross-platform application
 ├── packages/
 │   ├── nomade_domain/       # Domain models and business logic
+│   ├── nomade_native/       # Dart FFI Bridge (links to core)
 │   ├── nomade_protocol/     # Sync protocol and communication
 │   └── nomade_ui/           # Reusable UI components
 ├── core/
@@ -69,18 +70,26 @@ nomade/
    cd nomade
    ```
 
-2. **Build Rust core**:
+2. **Setup Dependencies**:
    ```bash
-   cd core/nomade_core_rs
-   cargo build
+   make deps
    ```
 
-3. **Run Flutter app**:
+3. **Run Flutter app (macOS)**:
    ```bash
-   cd ../../apps/nomade_app
-   flutter pub get
-   flutter run
+   make run-macos
    ```
+
+### Development Workflow
+
+- **Check Code Quality**:
+  ```bash
+  make check
+  ```
+- **Generate Bridge Code (after Rust changes)**:
+  ```bash
+  make gen
+  ```
 
 ## 📖 Documentation
 
@@ -120,8 +129,9 @@ Security is a top priority for Nomade. Please see our [Security Policy](SECURITY
 Nomade is in **early development**. Current focus:
 
 - [x] Initial monorepo scaffold
-- [ ] Core Rust library with QUIC, crypto, and storage
-- [ ] Flutter app shell with basic UI
+- [x] Core Rust library (QUIC, crypto, storage)
+- [x] Flutter app shell with basic UI
+- [x] Bridge integration (`nomade_native` + `nomade_core`)
 - [ ] Device pairing and identity management
 - [ ] Local RAG pipeline implementation
 - [ ] Cross-device sync protocol
@@ -130,10 +140,10 @@ Nomade is in **early development**. Current focus:
 ## 🎯 Roadmap
 
 ### Phase 1: Foundation (Current)
-- Monorepo structure and tooling
-- Core Rust libraries (QUIC, crypto, storage)
-- Flutter app skeleton
-- Basic device pairing
+- [x] Monorepo structure and tooling
+- [x] Core Rust libraries (QUIC, crypto, storage)
+- [x] Flutter app skeleton
+- [ ] Basic device pairing
 
 ### Phase 2: Core Features
 - Local document management
